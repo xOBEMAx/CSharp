@@ -85,33 +85,83 @@ class Program
 
             case 3:
                 Console.WriteLine("Сортировка элементов матрицы построчно ");
-                
+
+
                 for (int i = 0; i < array.GetLength(0); i++)
                 {
-                    for (int j = i + 1; j < array.GetLength(1); j++)
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        Console.Write(array[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine("To countinue press any key!");
+                Console.ReadKey();
+                Console.WriteLine();
+                break;
+
+            case 4:
+
+                Console.WriteLine();
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
                     {
                         for (int k = 0; k < array.GetLength(1) - j - 1; k++)
+                        {
                             if (array[i, k] > array[i, k + 1])
                             {
                                 int t = array[i, k];
                                 array[i, k] = array[i, k + 1];
                                 array[i, k + 1] = t;
                             }
+                        }
+                    }
+                }
+                Console.WriteLine("Сортировка элементов матрицы построчно (по возрастанию)");
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        Console.Write(array[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
+                Console.WriteLine("To countinue press any key!");
+                Console.ReadKey();
+                Console.WriteLine();
+                break;
+
+            case 5:
+
+                Console.WriteLine();
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    int str = array.GetLength(1) / 2;
+
+                    for (int j = 0; j < str; j++)
+                    {
+
+                        int temp = array[i, j];
+                        array[i, j] = array[i, array.GetLength(1) - 1 - j];
+                        array[i, array.GetLength(1) - 1 - j] = temp;
 
                     }
                 }
+                for (int i = 0; i < array.GetLength(0); i++)
+                {
+                    for (int j = 0; j < array.GetLength(1); j++)
+                    {
+                        Console.Write(array[i, j] + " ");
+                    }
+                    Console.WriteLine();
+                }
                 break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
+
         }
-
     }
-
 }
+
 
 
 
