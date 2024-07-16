@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.Design;
-using System.Data;
-using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
+using System.Threading.Channels;
+using System.Threading.Tasks;
 
-internal class Program
+namespace HomeWork6
 {
-    class Phone
+     class Phone
     {
         string Number;
         string Model;
@@ -31,13 +32,16 @@ internal class Program
             Model = userModel;
             Weight = phoneWeight;
         }
-    }
-    static void Main(string[] args)
-    {
-        
+
+        public void ResiveCall(string Name)
+        {
+            Console.WriteLine($"{Name} calls");
+        }
+
+        public string GetNumber()
+        {
+            return Number;
+        }
 
     }
-
-        
 }
-

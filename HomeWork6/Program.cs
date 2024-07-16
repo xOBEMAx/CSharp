@@ -1,92 +1,90 @@
 ﻿using System.Diagnostics;
+using System.Numerics;
+using System.Reflection;
+using System.Xml.Linq;
 
 namespace Homework6
 {
-    internal class Program
-    {
-        static void Main()
-        {
-            var phones = new[] {
-                new Phone("Samsung Mustang", 79998887766, 200),
-                new Phone("iPhone 55", 79999999999),
-                new Phone()
-            };
-
-            foreach (var phone in phones)
-            {
-                phone.Info();
-            }
-
-            phones[0].receiveCall("Витёк стройка", 79421442042);
-
-            var friendNumbers = new[]
-            {
-                "79421442042",
-                "79321479046"
-            };
-
-            phones[1].sendMessage(friendNumbers);
-        }
-    }
-
     class Phone
     {
-        private string model;
-        private ulong number;
-        public uint weight { get; private set; }
-
-        public Phone(string model, ulong number, uint weight) : this(model, number)
-        {
-            this.weight = weight;
-        }
-
-        public Phone(string model, ulong number)
-        {
-            this.model = model;
-            this.number = number;
-        }
+        string Number;
+        string Model;
+        float Weight;
 
         public Phone()
         {
-            model = "Unknown";
-            number = 0;
-            weight = 0;
+            Number = "Unknown number ";
+            Model = " No model";
+            Weight = 0;
         }
 
-        public void Info()
+        public Phone(string userNumber, string userModel)
         {
-            var formatedNumber = string.Format($"{number:+# (###) ###-##-##}");
-
-            Console.WriteLine(
-                $"Model: {model}\n" +
-                $"Number: {formatedNumber}\n" +
-                $"Weight: {weight}g\n");
+            Number = userNumber;
+            Model = userModel;
+            Weight = 0;
+        }
+        public Phone(string userNumber, string userModel, float phoneWeight)
+        {
+            Number = userNumber;
+            Model = userModel;
+            Weight = phoneWeight;
         }
 
-        public void receiveCall(string name)
+        public void ResiveCall(string Name)
         {
-            Console.WriteLine($"Вызов от {name}\n");
+            Console.WriteLine($"{Name} calls");
         }
 
-        public void receiveCall(string name, ulong number)
+        public string GetNumber()
         {
-            var formatedNumber = string.Format($"{number:+# (###) ###-##-##}");
-
-            Console.WriteLine($"Вызов от {name}\n" +
-                $"{formatedNumber}\n");
+            return Number;
         }
 
-        public void sendMessage(params string[] numbers)
+    }
+    class Program
+    {
+        public static void Main()
         {
-            string formatedNumber;
-            foreach (var number in numbers)
-            {
-                formatedNumber = string.Format($"{number:+# (###) ###-##-##}");
+            Phone phone = new Phone();
+            Phone phone1 = new Phone("+484234512", "iPhone 15");
+            Phone phone2 = new Phone("+482312376", "Sumsung", 5);
 
-                Console.WriteLine(formatedNumber);
-            }
+            Console.WriteLine(phone.GetNumber());
+            Console.WriteLine(phone1.GetNumber());
+            Console.WriteLine(phone2.GetNumber());
 
-            Console.WriteLine();
+            phone1.ResiveCall("Pavel");
         }
     }
 }
+
+
+
+
+
+
+//    Домашнее задание
+//Основное задание
+//1. Класс Phone.
+//Создайте класс Phone, который содержит переменные number, model и
+//weight.
+//Создайте три экземпляра этого класса.
+//Выведите на консоль значения их переменных.
+//Добавить в класс Phone методы: receiveCall, имеет один параметр – имя
+//звонящего. Выводит на консоль сообщение “Звонит { name}”. getNumber –
+//возвращает номер телефона.Вызвать эти методы для каждого из объектов.
+//    Добавить конструктор в класс Phone, который принимает на вход три
+//параметра для инициализации переменных класса - number, model и weight.
+//Добавить конструктор, который принимает на вход два параметра для
+//инициализации переменных класса - number, model.
+//teachmeskills.by
+//Добавить конструктор без параметров.
+//Вызвать из конструктора с тремя параметрами конструктор с
+//двумя.
+//Добавьте перегруженный метод receiveCall, который принимает два
+//параметра - имя звонящего и номер телефона звонящего.Вызвать этот
+//метод.
+//Создать метод sendMessage с аргументами переменной длины.Данный
+//метод принимает на вход номера телефонов, которым будет отправлено
+//сообщение. Метод выводит на консоль номера этих телефонов.

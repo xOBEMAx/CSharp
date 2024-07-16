@@ -6,6 +6,7 @@ using System.Threading.Channels;
 
 internal class HomeWork5
 {
+  
     static void Main(string[] args)
     {
         Console.WriteLine("1:Ввести текст вручную\n" +
@@ -24,30 +25,6 @@ internal class HomeWork5
                 break;
         }
     }
-
-    static string ReadTextFromConsole()
-    {
-        Console.WriteLine("Введите ваш текст");
-        string str = Console.ReadLine();
-        return str;
-    }
-
-    static async Task<string> ReadTextFromFile()
-    {
-        string str;
-
-        Console.WriteLine("Введите путь к файлу который нужно прочитать");
-        string path = Console.ReadLine();
-        path = path.Replace('\\', '/');
-        path = path.Trim('"');
-
-        using (StreamReader reader = new StreamReader(path))
-        {
-            str = await reader.ReadToEndAsync();
-            return str;
-        }
-    }
-
     static void Action(string str)
     {
         bool run = true;
@@ -81,7 +58,33 @@ internal class HomeWork5
                 default:
                     Console.WriteLine("Нет такой операции");
                     break;
+
+                    
             }
+            Console.Clear();
+        }
+    }
+
+    static string ReadTextFromConsole()
+    {
+        Console.WriteLine("Введите ваш текст");
+        string str = Console.ReadLine();
+        return str;
+    }
+
+    static async Task<string> ReadTextFromFile()
+    {
+        string str;
+
+        Console.WriteLine("Введите путь к файлу который нужно прочитать");
+        string path = Console.ReadLine();
+        path = path.Replace('\\', '/');
+        path = path.Trim('"');
+
+        using (StreamReader reader = new StreamReader(path))
+        {
+            str = await reader.ReadToEndAsync();
+            return str;
         }
     }
 
@@ -163,7 +166,7 @@ internal class HomeWork5
     static void ShowInterrogativeExclamationSentences(string str)
     {
         Console.Clear();
-        //char[] separator = {'.', '!', '?'};
+        
         string[] internalStr = Regex.Split(str, @"(?<=[\.!\?])\s+");
 
         Console.Write("Вопросительные предложения: ");
